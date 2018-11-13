@@ -1,0 +1,198 @@
+Looking at ANAP logs for La Negre nx 1483322 - At 26/05 21:33 GMT, POP started receiving ipsec packets suddenly and the ipsec tunnel came up without any changes on ANAP.
+This seems to be some sort of NAT issue with customer firewall for hybrid mode anap which got resolved after a while.
+
+The other 2 sites could probably also be the same issue - So please debug natting on the firewall before making any changes or rebooting ANAP.
+
+
+Thanks,
+Syed
+
+________________________________________
+From: Devaansh Goenka
+Sent: Monday, May 28, 2018 01:43 PM
+To: Mayur Patwary; Syed Abdul Hameed; Pooja Gupta; Prerna Singh; Tejuswi Rajan; TAC.ALL; ENG-ANAP.All; QA India
+Cc: Vidyaranya Maddi; Mitesh Arora; ASN Engineering
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites 
+ 
+Initially 3 sites were down. NX 1483322 came up by itself after ~1 day. 
+We do not have contact with customer so not sure if they made any changes on their end however looks like the ANAP has been up since >2days (so no reboot)
+ 
+<aryaka@anap:CLLNE ~> uptime
+07:56:01 up 2 days,  5:45,  2 users,  load average: 2.00, 2.00, 2.00
+ 
+ANAP looks to have rebooted with correct version in ~26 seconds around 2018/05/26 02:10:00 itself
+Logs form the ANAP @ https://xfer.aryaka.info/xfer/devaansh/Albemarle/ 
+Request you to take a look once
+ 
+Thanks and Regards,
+-Devaansh
+ 
+From: Mayur Patwary 
+Sent: 28 May 2018 01:17 PM
+To: Syed Abdul Hameed <Syed@aryaka.com>; Devaansh Goenka <devaansh@aryaka.com>; Pooja Gupta <pgupta@aryaka.com>; Prerna Singh <prerna.singh@aryaka.com>; Tejuswi Rajan <tejuswi.rajan@aryaka.com>; TAC.ALL <tac.all@aryaka.com>; ENG-ANAP.All <eng-anap.all@aryaka.com>; QA India <QA.india@aryaka.com>
+Cc: Vidyaranya Maddi <maddi@aryaka.com>; Mitesh Arora <mitesh@aryaka.com>; ASN Engineering <asn-eng@aryaka.com>
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+Waiting for the customer to come back with the specifics.  
+They stated that they will get back by Tuesday as it is a long weekend in the US.  
+ 
+Thanks
+Mayur
+ 
+ 
+From: Syed Abdul Hameed 
+Sent: Monday, May 28, 2018 1:11 PM
+To: Mayur Patwary <mayur@aryaka.com>; Devaansh Goenka <devaansh@aryaka.com>; Pooja Gupta <pgupta@aryaka.com>; Prerna Singh <prerna.singh@aryaka.com>; Tejuswi Rajan <tejuswi.rajan@aryaka.com>; TAC.ALL <tac.all@aryaka.com>; ENG-ANAP.All <eng-anap.all@aryaka.com>; QA India <QA.india@aryaka.com>
+Cc: Vidyaranya Maddi <maddi@aryaka.com>; Mitesh Arora <mitesh@aryaka.com>; ASN Engineering <asn-eng@aryaka.com>
+Subject: Re: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+Looks like ipsec is down from 26th since the upgrade for these 2 sites. 
+No ipsec packets seen from ANAP to POP.
+Were you able to check with the customer whether the ANAP is online?
+ 
+ 
+Thanks,
+Syed
+ 
+________________________________________
+From: Mayur Patwary
+Sent: Monday, May 28, 2018 12:36 PM
+To: Devaansh Goenka; Pooja Gupta; Prerna Singh; Tejuswi Rajan; TAC.ALL; ENG-ANAP.All; QA India
+Cc: Vidyaranya Maddi; Mitesh Arora
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites 
+ 
+[Adding ANAP Engineering for their inputs]
+ 
+Sites that are down currently-  1483101 and 1478799
+These went down when the customer was upgraded from 1.8.2.8 to 1.8.2.9
+ 
+ESC-1041 created to track this issue.  We will transfer the logs and update the location in the ticket
+ 
+ 
+Thanks and Regards,
+Mayur Patwary
+From: Devaansh Goenka 
+Sent: Monday, May 28, 2018 8:29 AM
+To: Pooja Gupta <pgupta@aryaka.com>; Prerna Singh <prerna.singh@aryaka.com>; Mayur Patwary <mayur@aryaka.com>; Tejuswi Rajan <tejuswi.rajan@aryaka.com>; TAC.ALL <tac.all@aryaka.com>
+Cc: Mayur Patwary <mayur@aryaka.com>; Vidyaranya Maddi <maddi@aryaka.com>
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+This has happened on two separate instances already.
+Please be on HOLD for any other DP upgrades to 1.8.2.9 till further updates on this mail thread
+ 
+Thanks and Regards,
+-Devaansh
+ 
+From: Pooja Gupta 
+Sent: 28 May 2018 01:42 AM
+To: Prerna Singh <prerna.singh@aryaka.com>; Mayur Patwary <mayur@aryaka.com>; Tejuswi Rajan <tejuswi.rajan@aryaka.com>; TAC.ALL <tac.all@aryaka.com>
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+Hi Team,
+ 
+On checking the logs for nexus – 1483101 Santiago - https://eagleeye.aryaka.info/#nx_1483101.info
+We do see ANAP taking the config file for 1.8.2.9 and rebooting after that. But once ANAP comes online after reboot it rolls back to 1.8.2.8. 
+ 
+WARN  2018/05/26 02:11:30.547 ANAP:UPGRADE *****ANAP REBOOT REQUESTED*****
+INFO  2018/05/26 02:11:30.500 ANAP:UPGRADE do-upgrade: ARM-0255: Upgrade installed, automatic reboot initiated
+INFO  2018/05/26 02:11:30.393 ANAP:UPGRADE ace-upgrade: ARM-0283: Upgrade installation complete.
+INFO  2018/05/26 02:11:30.047 ANAP:UPGRADE ace-upgrade: ARM-0282: Unmounting and flushing...
+INFO  2018/05/26 02:11:30.044 ANAP:UPGRADE ace-upgrade: ARM-0281: Configuring bootpartition aryaka-system2
+INFO  2018/05/26 02:11:22.795 ANAP:UPGRADE ace-upgrade: ARM-0276: Preparing new software...
+INFO  2018/05/26 02:11:19.581 ANAP:UPGRADE ace-upgrade: ARM-0274: Flushing...
+INFO  2018/05/26 02:11:19.526 ANAP:UPGRADE ace-upgrade: ARM-0273: Extracting 5 of 5: /tmp/upgrade/9-1.8.2.9-24970.el6-cfg.tar.bz2
+INFO  2018/05/26 02:11:18.333 ANAP:UPGRADE ARM-16938: received upcache 1.6.5.2-22155.el6 1.8.2.8-24630.el6 1.8.2.9-24970.el6
+INFO  2018/05/26 02:11:15.472 ANAP:UPGRADE ARM-16938: received upcache 1.6.5.2-22155.el6 1.8.2.8-24630.el6 1.8.2.9-24970.el6
+INFO  2018/05/26 02:11:15.472 ANAP:UPGRADE ARM-16944: ANAP config push waiting for software upgrade
+ 
+ERROR 2018/05/26 02:42:45.793 ANAP:UPGRADE ARM-18476: upgrade upload failure
+ERROR 2018/05/26 02:42:45.793 ANAP:UPGRADE ARM-8781: anap closed connection during upload
+INFO  2018/05/26 02:42:42.838 ANAP:NAPCOMM ARM-18448: waiting for connect 60 seconds
+INFO  2018/05/26 02:42:12.814 ANAP:NAPCOMM ARM-18448: waiting for connect 30 seconds
+ERROR 2018/05/26 02:41:42.792 ANAP:UPGRADE ARM-8781: anap closed connection during upload
+INFO  2018/05/26 02:41:39.838 ANAP:NAPCOMM ARM-18448: waiting for connect 60 seconds
+INFO  2018/05/26 02:41:09.815 ANAP:NAPCOMM ARM-18448: waiting for connect 30 seconds
+ERROR 2018/05/26 02:40:39.792 ANAP:UPGRADE ARM-8781: anap closed connection during upload
+INFO  2018/05/26 02:40:36.850 ANAP:NAPCOMM ARM-18448: waiting for connect 60 seconds
+INFO  2018/05/26 02:40:06.820 ANAP:NAPCOMM ARM-18448: waiting for connect 30 seconds
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-18453: upload file aryaka-intermediate-server-ca-chain.pem (3 KB)
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-21353: ca file is /dev/shm/pki/apan-ca-chain.pem cert file is /dev/shm/pki/apan_public.crt
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-21351: NAPCOM sending server certs
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-18473: found upload file 1-anap-minimal-439-64.tar.bz2
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-18473: found upload file 2-anap-kernel-513-64.tar.bz2
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-18473: found upload file 5-anap-1.8.2.9-24970.el6-prod.tar.bz2
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-18473: found upload file 3-security-460-64.tar.bz2
+INFO  2018/05/26 02:39:36.792 ANAP:UPGRADE ARM-8758: Starting upload of software release 1.8.2.9-24970.el
+ 
+ 
+Regards
+Pooja Gupta
+ 
+From: Prerna Singh 
+Sent: 26 May 2018 11:38
+To: Mayur Patwary <mayur@aryaka.com>; Tejuswi Rajan <tejuswi.rajan@aryaka.com>; TAC.ALL <tac.all@aryaka.com>
+Subject: Re: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+Hello Mayur,
+ 
+According to the tracker , I see Cavotec Nova Milanese site faced the same issue after its upgrade. But , the insertion was ASRV-SRM .
+ 
+Thanks,
+Prerna
+________________________________________
+From: Mayur Patwary
+Sent: Saturday, May 26, 2018 11:11:20 AM
+To: Tejuswi Rajan; Prerna Singh; TAC.ALL
+Subject: Re: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites 
+ 
+Hybrid mode and with checkpoint involved - there is no ssh access to the Anap in this case. I believe the customer hasn’t allowed the same.
+ 
+We had a similar issue with another customer during the upgrade.  Was it JAS?  And was that site in hybrid mode too? 
+Can we check the confluence tracker for details please 
+ 
+If yes, we need to understand the issue in detail and stop all hybrid insertion upgrades if needed. 
+ 
+Thanks 
+Mayur Patwary 
+________________________________________
+From: Tejuswi Rajan
+Sent: Saturday, May 26, 2018 10:20:46 AM
+To: Prerna Singh; TAC.ALL
+Subject: RE: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites 
+ 
+Hello All,
+ 
+Send a follow up email to customer. Awaiting response.
+ 
+Best Regards,
+Tejuswi Rajan
+ 
+From: Prerna Singh 
+Sent: Saturday, May 26, 2018 4:14 AM
+To: TAC.ALL <tac.all@aryaka.com>
+Cc: Tejuswi Rajan <tejuswi.rajan@aryaka.com>
+Subject: Upgrade of Albemarle sites to 1.8.2.9 failed for three sites
+ 
+Hello Team,
+ 
+While upgrading Albemarle to 1.8.2.9 , we encountered ANAP upgrade to be failed at the following sites : 
+ 
+Santiago
+La Negra
+Somerset,NJ 
+ 
+The nexuses are upgraded to FOF. 
+ 
+ 
+ 
+The tunnels are down at these sites currently with no pronap connectivity . 
+Tried manual push from APAN(push nap software command) but it did not work.
+ 
+WARN  2018/05/26 03:40:30.496 ANAP:UPGRADE ARM-15701: ANAP CLI forcing push of config version 1455989478; pending on NAPComm coming up
+WARN  2018/05/26 03:41:20.265 ANAP:UPGRADE ARM-15701: ANAP CLI forcing push of config version 1455989478; pending on NAPComm coming up
+ 
+ 
+We have reached out to customer and dropped a mail as well to let us know of any local contact available currently for the manual reboot of ANAPs.
+ 
+Thanks,
+Prerna
